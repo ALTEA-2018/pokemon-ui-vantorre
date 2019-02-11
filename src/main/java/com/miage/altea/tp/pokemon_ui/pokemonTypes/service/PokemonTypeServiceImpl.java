@@ -2,6 +2,7 @@ package com.miage.altea.tp.pokemon_ui.pokemonTypes.service;
 
 import com.miage.altea.tp.pokemon_ui.pokemonTypes.bo.PokemonType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,6 +24,7 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
         this.restTemplate = restTemplate;
     }
 
+    @Value("${pokemonType.service.url}")
     void setPokemonTypeServiceUrl(String pokemonServiceUrl) {
         this.pokemonServiceUrl = pokemonServiceUrl;
     }
