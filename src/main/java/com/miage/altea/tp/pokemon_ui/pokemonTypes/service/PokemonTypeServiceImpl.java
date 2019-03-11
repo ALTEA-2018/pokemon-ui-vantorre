@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +21,7 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
     private String pokemonServiceUrl;
 
     @Cacheable("pokemon-types")
+    @Retryable
     public List<PokemonType> listPokemonsTypes() {
         Locale locale = LocaleContextHolder.getLocale();
         return Arrays.asList(this.restTemplate.getForObject(this.pokemonServiceUrl + "/pokemon-types?locale=" + locale, PokemonType[].class));
@@ -28,6 +30,7 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
 
 
     @Cacheable("pokemon-types")
+    @Retryable
     public PokemonType getPokemonType(int id) {
         Locale locale = LocaleContextHolder.getLocale();
         return this.restTemplate.getForObject(this.pokemonServiceUrl + "/pokemon-types/{id}", PokemonType.class, id );

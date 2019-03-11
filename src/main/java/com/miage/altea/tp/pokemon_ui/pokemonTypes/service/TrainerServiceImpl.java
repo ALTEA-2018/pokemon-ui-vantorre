@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,7 +24,8 @@ public class TrainerServiceImpl implements TrainerService {
     private PokemonTypeService pokemonTypeService;
 
     @Override
-    @Cacheable("trainers")
+    @Cacheable(value = "trainers")
+    @Retryable
     public List<Trainer> getTrainers() {
         List<Trainer> list = Arrays.asList(this.restTemplate.getForObject(this.trainerServiceUrl + "/trainers/", Trainer[].class));
         list.forEach(trainer -> trainer.getTeam().forEach(pokemon -> pokemon.setPokemonTypeObject(pokemonTypeService.getPokemonType(pokemon.getPokemonType()))));
@@ -32,6 +34,7 @@ public class TrainerServiceImpl implements TrainerService {
 
     @Override
     @Cacheable("trainers")
+    @Retryable
     public Trainer getTrainer(String s) {
         return this.restTemplate.getForObject(this.trainerServiceUrl + "/trainers/" + s, Trainer.class);
     }
