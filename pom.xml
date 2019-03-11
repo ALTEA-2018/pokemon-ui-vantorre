@@ -67,6 +67,12 @@
             <version>1.18.2</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.6.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
