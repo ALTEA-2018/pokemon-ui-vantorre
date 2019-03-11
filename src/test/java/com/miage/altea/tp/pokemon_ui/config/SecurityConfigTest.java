@@ -1,11 +1,10 @@
-package com.miage.altea.tp.trainer_api.config;
+package com.miage.altea.tp.pokemon_ui.config;
 
-import com.miage.altea.tp.trainer_api.bo.Trainer;
-import com.miage.altea.tp.trainer_api.service.TrainerService;
+import com.miage.altea.tp.pokemon_ui.pokemonTypes.bo.Trainer;
+import com.miage.altea.tp.pokemon_ui.pokemonTypes.service.TrainerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
