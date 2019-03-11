@@ -23,9 +23,8 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
         return Arrays.asList(this.restTemplate.getForObject(this.pokemonServiceUrl + "/pokemon-types?locale=" + locale, PokemonType[].class));
     }
 
-    //TODO: remetre le restTemplate par defaut et utiliser celui ci pour pokemonserviceImpl
     @Autowired
-    @Qualifier("trainerApiRestTemplate")
+    @Qualifier("restTemplate")
     void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
