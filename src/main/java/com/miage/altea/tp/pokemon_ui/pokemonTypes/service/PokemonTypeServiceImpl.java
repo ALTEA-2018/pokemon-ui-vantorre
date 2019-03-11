@@ -23,6 +23,11 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
         return Arrays.asList(this.restTemplate.getForObject(this.pokemonServiceUrl + "/pokemon-types?locale=" + locale, PokemonType[].class));
     }
 
+    public PokemonType getPokemonType(int id) {
+        Locale locale = LocaleContextHolder.getLocale();
+        return this.restTemplate.getForObject(this.pokemonServiceUrl + "/pokemon-types/" + id + "?locale=" + locale, PokemonType.class);
+    }
+
     @Autowired
     @Qualifier("restTemplate")
     void setRestTemplate(RestTemplate restTemplate) {

@@ -14,10 +14,10 @@
                     <h4 class="my-0 font-weight-normal"><a href="/trainer?trainerName={{name}}">{{name}}</a></h4>
                 </div>
                 <div class="card-body">
-                {{#teamPokemon}}
-                <img class="card-img-top" src="{{sprites.front_default}}" alt="Pokemon"/>
+                {{#team}}
+                <img class="card-img-top" src="{{pokemonTypeObject.sprites.front_default}}" alt="Pokemon"/>
                 <div><span class="badge badge-secondary">Level {{level}} <!--3--></span></div>
-                    {{/teamPokemon}}
+                    {{/team}}
                 </div>
             </div>
         </div>
