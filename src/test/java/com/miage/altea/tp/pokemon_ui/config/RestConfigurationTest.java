@@ -16,7 +16,7 @@ class RestConfigurationTest {
 
     @Test
     void trainerApiRestTemplate_shouldHaveBasicAuth() {
-        var restTemplate = new RestConfiguration().restTemplate();
+        var restTemplate = new RestConfiguration().trainerApiRestTemplate();
 
         assertNotNull(restTemplate);
 

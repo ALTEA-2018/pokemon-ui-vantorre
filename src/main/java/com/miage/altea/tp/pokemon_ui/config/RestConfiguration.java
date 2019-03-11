@@ -21,12 +21,18 @@ public class RestConfiguration {
     private String password;
 
     @Bean
-    RestTemplate restTemplate(){
+    RestTemplate trainerApiRestTemplate(){
         RestTemplate template= new RestTemplate();
         List<ClientHttpRequestInterceptor> interceptors = new ArrayList<>();
         interceptors.add(new BasicAuthenticationInterceptor(username, password));
         template.setInterceptors(interceptors);
         return template;
+    }
+
+
+    @Bean
+    RestTemplate restTemplate(){
+        return new RestTemplate();
     }
 
 }
