@@ -10,4 +10,5 @@ public class TrainerServiceImpl implements TrainerService {
         //TODO
         return null;
     }
+    //TODO 4.5. La page "Mon Profil"
 }
