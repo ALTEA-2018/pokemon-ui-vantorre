@@ -36,7 +36,9 @@ public class TrainerServiceImpl implements TrainerService {
     @Cacheable("trainers")
     @Retryable
     public Trainer getTrainer(String s) {
-        return this.restTemplate.getForObject(this.trainerServiceUrl + "/trainers/" + s, Trainer.class);
+        Trainer trainer = this.restTemplate.getForObject(this.trainerServiceUrl + "/trainers/" + s, Trainer.class);
+        trainer.getTeam().forEach(pokemon -> pokemon.setPokemonTypeObject(pokemonTypeService.getPokemonType(pokemon.getPokemonType())));
+        return trainer;
     }
 
     @Autowired
