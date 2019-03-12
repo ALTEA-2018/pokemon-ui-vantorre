@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.retry.annotation.Retryable;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TrainerServiceImpl implements TrainerService {
@@ -28,6 +31,7 @@ public class TrainerServiceImpl implements TrainerService {
     @Retryable
     public List<Trainer> getTrainers() {
         List<Trainer> list = Arrays.asList(this.restTemplate.getForObject(this.trainerServiceUrl + "/trainers/", Trainer[].class));
+        list = list.stream().filter(trainer -> !trainer.getName().equals(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername())).collect(Collectors.toList());
         list.forEach(trainer -> trainer.getTeam().forEach(pokemon -> pokemon.setPokemonTypeObject(pokemonTypeService.getPokemonType(pokemon.getPokemonType()))));
         return list;
     }
