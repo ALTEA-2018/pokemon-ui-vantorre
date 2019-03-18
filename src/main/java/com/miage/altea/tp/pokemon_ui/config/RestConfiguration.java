@@ -1,6 +1,7 @@
 package com.miage.altea.tp.pokemon_ui.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@EnableZuulProxy
 public class RestConfiguration {
 
 
