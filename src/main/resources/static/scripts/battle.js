@@ -45,10 +45,10 @@ async function enterPokemon(trainerName, pokemon, front){
 function updatePokemon(trainerName, pokemon){
     let pokemonHpBar = $(`[id='${trainerName}-pokemon-hp']`);
 
-    pokemonHpBar.text(pokemon.hp);
-    pokemonHpBar.attr("aria-valuemax",pokemon.maxHp);
-    pokemonHpBar.attr("aria-valuenow",pokemon.hp);
-    pokemonHpBar.css("width",`${pokemon.hp * 100 / pokemon.maxHp}%` );
+    pokemonHpBar.text(pokemon.currentStates.hp);
+    pokemonHpBar.attr("aria-valuemax",pokemon.pokemonTypeObject.stats.hp);
+    pokemonHpBar.attr("aria-valuenow",pokemon.currentStates.hp);
+    pokemonHpBar.css("width",`${pokemon.currentStates.hp * 100 / pokemon.pokemonTypeObject.stats.hp}%` );
 }
 
 async function exitPokemon(trainerName, pokemon){
