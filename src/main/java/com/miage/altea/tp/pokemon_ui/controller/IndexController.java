@@ -15,6 +15,7 @@ public class IndexController {
 
     @PostMapping("/registerTrainer")
     ModelAndView registerNewTrainer(String trainerName) {
+        // TODO faire persister
         ModelAndView res = new ModelAndView();
         res.addObject("name", trainerName);
         res.setViewName("register");
