@@ -24,7 +24,7 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
     @Retryable
     public List<PokemonType> listPokemonsTypes() {
         Locale locale = LocaleContextHolder.getLocale();
-        return Arrays.asList(this.restTemplate.getForObject(this.pokemonServiceUrl + "/pokemon-types?locale=" + locale, PokemonType[].class));
+        return Arrays.asList(this.restTemplate.getForObject(this.pokemonServiceUrl + "/pokemon-types/?locale=" + locale, PokemonType[].class));
     }
 
 
